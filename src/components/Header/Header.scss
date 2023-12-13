@@ -1,0 +1,36 @@
+.header-container {
+  background: transparent;
+  //   opacity: .2;
+  color: black;
+  // position: fixed;
+  top: 0;
+  width: auto;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px 10px;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 10px;
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    gap: 20px;
+  }:hover{
+    opacity: 70%;
+    scale: 1.01;
+  }
+}
+.main-logo > img {
+  height: 40px;
+  width: 120px;
+}
+.header-right-side-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}

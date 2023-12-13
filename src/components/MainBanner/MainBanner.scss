@@ -1,0 +1,32 @@
+
+  .main-banner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 98vw;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    top: 60px;
+    position: relative; 
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    .banner-title {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translate(-50%, -50%);
+    //   text-align: center;
+      color: white;
+      font-size: 34px;
+      font-weight: bold;
+    //   width: 80%;
+    //   z-index: 1;
+
+    }
+  }
+  
