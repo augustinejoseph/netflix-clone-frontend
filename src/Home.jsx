@@ -2,26 +2,28 @@ import Header from "./components/Header/Header";
 import MainBanner from "./components/MainBanner/MainBanner";
 import createHttpClient from "../http/httpClient";
 import { useEffect, useState } from "react";
+import Loading from "./common/Loading";
 
 const Home = () => {
-  const httpClient = createHttpClient()
-  const [response, setResponse] = useState()
+  const httpClient = createHttpClient();
+  const [responseData, setResponseData] = useState();
   useEffect(() => {
-    getData()
-  },[])
+    getData();
+  }, []);
   const getData = async () => {
     try {
-      const response = await httpClient.get('/3/discover/tv?with_networks=213');
-      setResponse(response.data.results)
+      const response = await httpClient.get("/3/discover/tv?with_networks=213");
+      setResponseData(response.data.results);
+      console.log(response);
+      console.log(responseData);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
   return (
     <>
       <Header />
-      <MainBanner data={response} />
-      
+      {responseData ? <MainBanner data={responseData} /> : <Loading />}
     </>
   );
 };
