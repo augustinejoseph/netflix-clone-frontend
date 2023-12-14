@@ -1,5 +1,12 @@
-.svg-loader{
-    height: 20vmin;
-    padding: 3vmin 20vmin;
-    vertical-align: top;
-  }
+.svg-loader {
+  height: 20vmin;
+//   padding: 50vh 50vw;
+    // vertical-align: top;
+}
+.loader-div {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  align-items: center;
+  justify-content: center;
+}

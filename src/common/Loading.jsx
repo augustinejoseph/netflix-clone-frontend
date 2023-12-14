@@ -1,7 +1,7 @@
-
+import "./Loading.scss";
 const Loading = () => {
   return (
-    <div>
+    <div className="loader-div">
       <svg
         version="1.1"
         className="svg-loader"

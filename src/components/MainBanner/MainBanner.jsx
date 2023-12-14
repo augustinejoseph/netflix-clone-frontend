@@ -2,20 +2,28 @@ import { useEffect, useState } from "react";
 import "./MainBanner.scss";
 import { IMAGE_BASE_URL } from "../../../constants/constants";
 import PropTypes from "prop-types";
-import {NextIcon , PreviousIcon} from '../../common/icons'
+import { NextIcon, PreviousIcon } from "../../common/icons";
+import Loading from "../../common/Loading";
 
 const MainBanner = ({ data }) => {
   const [currentArray, setCurrentArray] = useState(0);
   const [posterLink, setPosterLink] = useState();
   const [name, setName] = useState();
   const [mainPosterData, setMainPosterData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [overview, setOverView] = useState()
 
   const nextSlide = () => {
+    setIsLoading(true);
     setCurrentArray((prevIndex) => (prevIndex + 1) % mainPosterData.length);
   };
 
   const prevSlide = () => {
-    setCurrentArray((prevIndex) => (prevIndex - 1 + mainPosterData.length) % mainPosterData.length);
+    setIsLoading(true);
+    setCurrentArray(
+      (prevIndex) =>
+        (prevIndex - 1 + mainPosterData.length) % mainPosterData.length
+    );
   };
 
   useEffect(() => {
@@ -29,21 +37,34 @@ const MainBanner = ({ data }) => {
     if (mainPosterData && mainPosterData.length > 0) {
       setPosterLink(mainPosterData[currentArray].poster_path);
       setName(mainPosterData[currentArray].name);
+      setOverView(mainPosterData[currentArray].overview)
     }
   }, [currentArray, mainPosterData]);
 
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
+
   return (
     <div className="main-banner-container">
+      {isLoading && <Loading />}
       {posterLink && name && (
         <>
-          {/* <img className="previos-button" onClick={prevSlide} src={PreviousIcon} /> */}
-          <PreviousIcon className="previos-button" onClick={prevSlide} />
-
-          <img src={`${IMAGE_BASE_URL}/t/p/original${posterLink}`} alt="" />
+          <div  className="previous-button" onClick={prevSlide}>
+            <PreviousIcon  />
+          </div>
+          <img
+            className={isLoading ? 'loading' : ""}
+            src={`${IMAGE_BASE_URL}/t/p/original${posterLink}`}
+            alt=""
+            onLoad={handleImageLoad}
+            onError={handleImageLoad}
+          />
           <div className="banner-title">{name}</div>
-          {/* <img className="previos-button" onClick={nextSlide}src={NextIcon}/> */}
-          <NextIcon className="next-button" onClick={nextSlide} />
-
+          <div className="banner-overview" ><p>{overview}</p></div>
+          <div className="previous-button" onClick={nextSlide}>
+            <NextIcon className="next-button" />
+          </div>
         </>
       )}
     </div>
@@ -58,4 +79,5 @@ MainBanner.propTypes = {
     })
   ),
 };
+
 export default MainBanner;
