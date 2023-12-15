@@ -3,6 +3,7 @@ import MainBanner from "./components/MainBanner/MainBanner";
 import createHttpClient from "../http/httpClient";
 import { useEffect, useState } from "react";
 import Loading from "./common/Loading";
+import HorizontalCards from "./components/HorizonatalCards/HorizontalCards";
 
 const Home = () => {
   const httpClient = createHttpClient();
@@ -24,6 +25,7 @@ const Home = () => {
     <>
       <Header />
       {responseData ? <MainBanner data={responseData} /> : <Loading />}
+      <HorizontalCards />
     </>
   );
 };

@@ -11,7 +11,7 @@ const MainBanner = ({ data }) => {
   const [name, setName] = useState();
   const [mainPosterData, setMainPosterData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [overview, setOverView] = useState()
+  const [overview, setOverView] = useState();
 
   const nextSlide = () => {
     setIsLoading(true);
@@ -28,16 +28,16 @@ const MainBanner = ({ data }) => {
 
   useEffect(() => {
     setMainPosterData(data);
-    setPosterLink(data[0]?.poster_path);
+    setPosterLink(data[0]?.backdrop_path);
     setName(data[0]?.name);
     setCurrentArray(0);
   }, [data]);
 
   useEffect(() => {
     if (mainPosterData && mainPosterData.length > 0) {
-      setPosterLink(mainPosterData[currentArray].poster_path);
+      setPosterLink(mainPosterData[currentArray].backdrop_path);
       setName(mainPosterData[currentArray].name);
-      setOverView(mainPosterData[currentArray].overview)
+      setOverView(mainPosterData[currentArray].overview);
     }
   }, [currentArray, mainPosterData]);
 
@@ -50,18 +50,20 @@ const MainBanner = ({ data }) => {
       {isLoading && <Loading />}
       {posterLink && name && (
         <>
-          <div  className="previous-button" onClick={prevSlide}>
-            <PreviousIcon  />
+          <div className="previous-button" onClick={prevSlide}>
+            <PreviousIcon />
           </div>
           <img
-            className={isLoading ? 'loading' : ""}
+            className={isLoading ? "loading" : ""}
             src={`${IMAGE_BASE_URL}/t/p/original${posterLink}`}
             alt=""
             onLoad={handleImageLoad}
             onError={handleImageLoad}
           />
           <div className="banner-title">{name}</div>
-          <div className="banner-overview" ><p>{overview}</p></div>
+          <div className="banner-overview">
+            <p>{overview}</p>
+          </div>
           <div className="previous-button" onClick={nextSlide}>
             <NextIcon className="next-button" />
           </div>
@@ -74,7 +76,7 @@ const MainBanner = ({ data }) => {
 MainBanner.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      poster_path: PropTypes.string,
+      backdrop_path: PropTypes.string,
       name: PropTypes.string,
     })
   ),
