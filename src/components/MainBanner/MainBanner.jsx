@@ -50,23 +50,27 @@ const MainBanner = ({ data }) => {
       {isLoading && <Loading />}
       {posterLink && name && (
         <>
-          {/* <div className="previous-button" onClick={prevSlide}> */}
-            <PreviousIcon onClick={prevSlide} />
-          {/* </div> */}
-          <img
-            className={isLoading ? "loading" : ""}
-            src={`${IMAGE_BASE_URL}/t/p/original${posterLink}`}
-            alt=""
-            onLoad={handleImageLoad}
-            onError={handleImageLoad}
-          />
-          <div className="previous-button" onClick={nextSlide}>
-            <NextIcon onClick={nextSlide} className="next-button" />
-          </div>
-          <div className="banner-title">{name}</div>
-          <div className="banner-overview">
-            <p>{overview}</p>
-          </div>
+          <>
+            <div className="previous-button" onClick={prevSlide}>
+              <PreviousIcon onClick={prevSlide} />
+            </div>
+            <img
+              className={isLoading ? "loading" : ""}
+              src={`${IMAGE_BASE_URL}/t/p/original${posterLink}`}
+              alt=""
+              onLoad={handleImageLoad}
+              onError={handleImageLoad}
+            />
+            <div className="next-button" onClick={nextSlide}>
+              <NextIcon onClick={nextSlide} className="next-button" />
+            </div>
+          </>
+          <>
+            <div className="banner-overview">
+              <span>{name}</span>
+              <span>{overview}</span>
+            </div>
+          </>
         </>
       )}
     </div>
