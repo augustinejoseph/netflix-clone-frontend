@@ -1,11 +1,13 @@
 .header-container {
-  background: transparent;
-  //   opacity: .2;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.6629026610644257) 0%,
+    rgba(9, 9, 121, 0) 57%
+  );
   color: black;
-  // position: fixed;
   top: 0;
   width: auto;
-  height: 20px;
   display: flex;
   flex-direction: row;
   padding: 10px 10px;
@@ -14,15 +16,19 @@
   position: fixed;
   right: 0;
   left: 0;
-  top: 10px;
+  z-index: 100;
   ul {
-    display: flex;
     flex-direction: row;
     list-style-type: none;
     gap: 20px;
-  }:hover{
-    opacity: 70%;
-    scale: 1.01;
+    display: flex;
+    color: #faf3f3 !important;
+    & > li:hover {
+      color: #fff !important;
+      // opacity: 70%;
+      scale: 1.2;
+      cursor: pointer;
+    }
   }
 }
 .main-logo > img {
@@ -33,4 +39,10 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
+  :hover {
+    color: white;
+
+    scale: 1.2;
+    cursor: pointer;
+  }
 }
