@@ -15,8 +15,6 @@ const Home = () => {
     try {
       const response = await httpClient.get("/3/discover/tv?with_networks=213");
       setResponseData(response.data.results);
-      console.log(response);
-      console.log(responseData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -25,7 +23,13 @@ const Home = () => {
     <>
       <Header />
       {responseData ? <MainBanner data={responseData} /> : <Loading />}
-      <HorizontalCards />
+      { responseData && responseData.map((response, index) => {
+        console.log('okkk',response);
+        console.log(`Rendering HorizontalCards ${index}`);
+        <HorizontalCards key={index} data={response} />;
+      })}
+        <HorizontalCards {...responseData[1]} />;
+
     </>
   );
 };
