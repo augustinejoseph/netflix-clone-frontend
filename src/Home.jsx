@@ -26,9 +26,9 @@ const Home = () => {
       { responseData && responseData.map((response, index) => {
         console.log('okkk',response);
         console.log(`Rendering HorizontalCards ${index}`);
-        <HorizontalCards key={index} data={response} />;
+        return <HorizontalCards key={index} data={response} />;
       })}
-        <HorizontalCards {...responseData[1]} />;
+        {/* <HorizontalCards {...responseData} />; */}
 
     </>
   );
